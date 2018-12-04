@@ -6,8 +6,7 @@ var losses = 0;
 // console.log(losses + " losses");
 var userGuesses = [];
 // console.log(userGuesses+ " userGuesses");
-var wtfLeft = 9;
-// console.log(wtfLeft + " wtfLeft variable value");
+var chances = 9;
 var pcGuess;
 var numeric;
 // pcGuess = (pcGuessArray[numeric]);
@@ -24,14 +23,7 @@ function pcGuessFunction() {
 }
 
 document.onkeyup = function (event) {
-    var userGuess = event.key;
-    // console.log(userGuess);
-    // console.log(userGuesses);
-    // console.log(userGuesses.indexOf(userGuess));
-    // console.log("you have" + wtfLeft + "before the line 19 guessesLeft--");
-    // console.log(wtfLeft);
-    // document.getElementById("guessLeft").innerHTML = "Guesses Remaining: " + wtfLeft;
- 
+    var userGuess = event.key; 
 
     if (userGuess == pcGuess) {
         wins++;
@@ -40,16 +32,15 @@ document.onkeyup = function (event) {
         win();
     } else if (userGuess != pcGuess && userGuesses.indexOf(userGuess) != -1) {
         console.log("bad idea!");
-    } else if (wtfLeft > 0) {
+    } else if (chances > 0) {
         // console.log(guessesLeft);
         // console.log("if guesses > 0 ran")
-        wtfLeft--;
+        chances--;
         userGuesses.push(userGuess);
         document.getElementById("guessed").innerHTML += userGuess + ", ";
-        // console.log(wtfLeft);
-        document.getElementById("guessLeft").innerHTML = "Guesses Remaining: " + wtfLeft;
+        document.getElementById("guessLeft").innerHTML = "Guesses Remaining: " + chances;
         // guessesLeft--;
-    } else if (wtfLeft == 0) {
+    } else if (chances == 0) {
         losses++;
         document.getElementById("losses").innerHTML = "Losses: " + losses + ".";
         // console.log("guesses left === 0 script ran");
@@ -62,9 +53,9 @@ function win() {
     numeric = Math.floor(Math.random() * 26);
     pcGuess = (pcGuessArray[numeric]);
     console.log(pcGuess);
-    wtfLeft = 9;
+    chances = 9;
     document.getElementById("guessed").innerHTML = "";
-    document.getElementById("guessLeft").innerHTML = "Guesses Remaining: " + wtfLeft;
+    document.getElementById("guessLeft").innerHTML = "Guesses Remaining: " + chances;
 
 }
 
@@ -73,9 +64,9 @@ function pluslosses() {
     numeric = Math.floor(Math.random() * 26);
     pcGuess = (pcGuessArray[numeric]);
     console.log(pcGuess);
-    wtfLeft = 9;
+    chances = 9;
     document.getElementById("guessed").innerHTML = "";
-    document.getElementById("guessLeft").innerHTML = "Guesses Remaining: " + wtfLeft;
+    document.getElementById("guessLeft").innerHTML = "Guesses Remaining: " + chances;
 
 }
 
