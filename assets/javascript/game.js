@@ -5,31 +5,41 @@ var wins = 0;
 var losses = 0;
 // console.log(losses + " losses");
 var userGuesses = [];
+var initialOne;
 // console.log(userGuesses+ " userGuesses");
 var chances = 9;
 var pcGuess;
 var numeric;
+var i = 0;
 // pcGuess = (pcGuessArray[numeric]);
 
 
 function clearArray() {
-    userGuesses = [ ];
+    userGuesses = [];
 }
 
 function pcGuessFunction() {
-    numeric = Math.floor(Math.random() * 26);
+    numeric = Math.round(Math.random() * 26);
     pcGuess = pcGuessArray[numeric];
     console.log(pcGuess + " This is the PC guess!");
 }
 
 document.onkeyup = function (event) {
-    var userGuess = event.key; 
+    initialOne = event.key;
+    userGuess = initialOne.toLowerCase();
+    console.log(userGuess)
+    i = 0;
+    console.log(i)
+
+
 
     if (userGuess == pcGuess) {
         wins++;
         document.getElementById("wins").innerHTML = "Wins: " + wins;
         // console.log("userguess === pcguess if line ran");
         win();
+    } else if (userGuess != pcGuess && pcGuessArray.indexOf(userGuess) == -1) {
+        console.log("Dear sir or madam, thank you for pressing a key, unfortunately you pressed a key that I will not accept. Please try again, this time, with feeling.  Push a letter key. Push a letter key TO THE LIMIT!")
     } else if (userGuess != pcGuess && userGuesses.indexOf(userGuess) != -1) {
         console.log("bad idea!");
     } else if (chances > 0) {
